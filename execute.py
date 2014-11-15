@@ -28,23 +28,24 @@ def pretty_print_machine(machine):
         print key, ' -> ', machine[key]
 
 
-def execute(machine, tape):
+def execute(machine, tape, verbose=True):
     tape = list(tape)
     iteration_limit = 100
     iteration = 0
     state = "start"
     position = 0
     while True:
-        print "".join(tape)
-        print " " * position + "^" + "   " + state + " -> ",
+        if verbose:
+            print "".join(tape)
+            print " " * position + "^" + "   " + state + " -> ",
         symbol = tape[position]
         try:
             new_symbol, state, direction = machine[(symbol, state)]
             tape[position] = new_symbol
         except KeyError:
             state = "no"
-
-        print state
+        if verbose:
+            print state
 
         if state == "yes":
             return
@@ -57,7 +58,7 @@ def execute(machine, tape):
         if direction == "<":
             position -= 1
             if position == -1:
-                tape.reverse().append(" ").reverse()
+                tape = [" "] + tape
                 position += 1
         elif direction == ">":
             position += 1
