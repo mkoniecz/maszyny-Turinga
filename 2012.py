@@ -6,7 +6,7 @@ import execute
 
 """
 X = (0|1)*
-L = X#X
+L: X#X
 
 Szukana jest maszyna akceptująca L.
 
