@@ -29,17 +29,22 @@ def pretty_print_machine(machine):
 
 
 def execute(machine, tape):
+    tape = list(tape)
     iteration_limit = 100
     iteration = 0
     state = "start"
     position = 0
     while True:
         print "".join(tape)
-        print " " * position + "^" + "   " + state
-        print
+        print " " * position + "^" + "   " + state + " -> ",
         symbol = tape[position]
-        new_symbol, state, direction = machine[(symbol, state)]
-        tape[position] = new_symbol
+        try:
+            new_symbol, state, direction = machine[(symbol, state)]
+            tape[position] = new_symbol
+        except KeyError:
+            state = "no"
+
+        print state
 
         if state == "yes":
             return
@@ -58,6 +63,8 @@ def execute(machine, tape):
             position += 1
             if len(tape) == position:
                 tape.append(" ")
+        elif direction == "":
+            pass
         else:
             raise ValueError
 
@@ -71,7 +78,7 @@ def example():
     unary[("1", "after_break")] = ("1", "after_break", ">")
     unary[(" ", "after_break")] = (" ", "end_found", "<")
     unary[("1", "end_found")] = ("1", "yes", "")
-    unary_tape = list("11 111")
+    unary_tape = "11 111"
 
     pretty_print_machine(unary)
     execute(unary, unary_tape)
