@@ -59,7 +59,7 @@ def execute(machine, tape):
             if len(tape) == position:
                 tape.append(" ")
         else:
-            raise TypeError
+            raise ValueError
 
 
 def example():
