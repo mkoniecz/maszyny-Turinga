@@ -1,8 +1,8 @@
 # coding=utf-8
 from collections import OrderedDict
+import re
 
 import execute
-
 
 """
 X = (0|1)*
@@ -31,6 +31,7 @@ powtarzaj
 
 double = OrderedDict()
 
+# [(znak, stan)] = (nowy_znak, nowy_stan, kierunek_przejścia)
 double[("#", "start")] = ("#", "s.a", ">")
 double[("0", "start")] = ("0", "u.a", "")
 double[("1", "start")] = ("1", "u.a", "")
@@ -69,3 +70,14 @@ double[(" ", "p.c")] = (" ", "start", ">")
 execute.execute(double, "01#01")
 execute.execute(double, "##")
 execute.execute(double, "01#11")
+
+
+def checker(tape):
+    m = re.search('^ *(?P<x>[01]*)#(?P=x) *$', tape)
+    if m is None:
+        return False
+    else:
+        return True
+
+# sprawdz czy MT da tą samą odpowiedź co checker na taśmach o długości do 12 znaków
+execute.verify(double, checker, 12)
