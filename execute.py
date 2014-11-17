@@ -37,9 +37,8 @@ def extend_tape_if_needed(position, tape):
     return position, tape
 
 
-def execute(machine, tape, verbose=True):
+def execute(machine, tape, verbose=True, iteration_limit=100):
     tape = list(tape)
-    iteration_limit = 100
     iteration = 0
     state = "start"
     position = 0
@@ -89,14 +88,15 @@ def get_alphabet(machine):
     return alphabet
 
 
-def verify(machine, check_function, max_tape_len):
-    alphabet = get_alphabet(machine)
+def verify(machine, check_function, max_tape_len, alphabet=None):
+    if alphabet is None:
+        alphabet = get_alphabet(machine)
     check_this_case(machine, check_function, "")
     verification_recurrency(machine, alphabet, max_tape_len, "", check_function, 0)
 
 
 def check_this_case(machine, check_function, tape):
-    tm_result = execute(machine, tape, verbose=False)
+    tm_result = execute(machine, tape, verbose=False, iteration_limit=10000)
     check = check_function(tape)
     if (tm_result != check):
         print "for tape " + tape + " TM failed. Expected " + str(check) + ", TM returned " + str(tm_result)
