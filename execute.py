@@ -44,6 +44,7 @@ def execute(machine, tape, verbose=True):
     state = "start"
     position = 0
     while True:
+        iteration += 1
         position, tape = extend_tape_if_needed(position, tape)
         if verbose:
             print "".join(tape)
