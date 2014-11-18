@@ -4,10 +4,17 @@ import re
 
 import execute
 
+
 """
 X = (0|1)*
 L: X#X
+"""
 
+"""
+Sprawdzana jest równość kolejnych znaków w ciągach oddzielonych haszem.
+"""
+
+"""
 Szukana jest maszyna akceptująca L.
 
 Najprostszy słowem języka to "#". Można go rozbudować dodając 0: 0X0.

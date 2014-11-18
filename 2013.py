@@ -17,7 +17,13 @@ X = (0|1)*
 Y = (0|1|#)*
 X jest podciągiem Y
 L: X#Y
+"""
 
+"""
+Każde 0 i 1 po pierwszym haszu będzie sprawdzane czy nie jest początkiem szukanego ciągu.
+"""
+
+"""
 przetworzone 0 oznaczam jako @
 przetworzone 1 oznaczam jako !
 

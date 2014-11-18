@@ -8,6 +8,13 @@ L: bin(n)#0^n
 
 Innymi słowy po lewej od hasza to pewna liczba w zapisie binarnym, na prawo ta sama liczba w zapisie unarnym.
 Zakładam brak zer wiodących dla zapisu binarnego.
+"""
+
+"""
+W każdym kroku od obu liczb odejmowane jest 1 lub obie dzielone są przez 2
+"""
+
+"""
 
 Szkic działania maszyny:
 
