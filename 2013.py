@@ -20,7 +20,7 @@ L: X#Y
 """
 
 """
-Każde 0 i 1 po pierwszym haszu będzie sprawdzane czy nie jest początkiem szukanego ciągu.
+Każde 0 i 1 po pierwszym haszu będzie sprawdzane czy jest początkiem szukanego ciągu.
 """
 
 """
